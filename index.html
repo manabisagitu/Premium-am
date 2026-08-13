@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aktivasi Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0b0f1a;
+            color: #e6edf5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+
+        .container {
+            background: #141a26;
+            max-width: 640px;
+            width: 100%;
+            border-radius: 28px;
+            padding: 2rem 2rem 2.5rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid #2a3344;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #1f8b4c;
+            color: #d2f0e0;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .subhead {
+            color: #9aa8c7;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            border-left: 3px solid #2f8bff;
+            padding-left: 0.9rem;
+        }
+
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            color: #9aa8c7;
+            margin-bottom: 1.8rem;
+        }
+        .step-indicator .active-step {
+            color: #fff;
+            font-weight: 600;
+            background: #2f8bff;
+            padding: 0.1rem 0.9rem;
+            border-radius: 30px;
+        }
+
+        .card {
+            background: #1d2433;
+            border-radius: 18px;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #2a3346;
+        }
+
+        .card h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        .card p {
+            color: #b0bedb;
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+        .input-group input {
+            flex: 1;
+            min-width: 180px;
+            padding: 0.8rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #2f3a52;
+            background: #0f1420;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.2s;
+        }
+        .input-group input:focus {
+            border-color: #2f8bff;
+            box-shadow: 0 0 0 3px rgba(47, 139, 255, 0.25);
+        }
+        .input-group input::placeholder {
+            color: #5a6a88;
+        }
+
+        .btn-primary {
+            background: #2f8bff;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+        .btn-primary:hover {
+            background: #4a9cff;
+            transform: scale(1.01);
+        }
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .verifikasi-box {
+            background: #111824;
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            border: 1px dashed #3a4a66;
+            margin-top: 1rem;
+        }
+        .verifikasi-box label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #b0bedb;
+            margin-bottom: 0.4rem;
+        }
+        .verifikasi-box .row {
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+        }
+        .verifikasi-box input {
+            flex: 1;
+            min-width: 160px;
+            padding: 0.7rem 1rem;
+            border-radius: 40px;
+            border: 1px solid #2f3a52;
+            background: #0b0f1a;
+            color: #fff;
+            font-size: 0.85rem;
+            outline: none;
+            font-family: monospace;
+        }
+        .verifikasi-box input:focus {
+            border-color: #2f8bff;
+        }
+
+        .panduan {
+            margin-top: 2rem;
+        }
+        .panduan h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .panduan h3 i {
+            color: #2f8bff;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+        .step-list li {
+            display: flex;
+            gap: 0.9rem;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #202837;
+            font-size: 0.9rem;
+            color: #c8d3ec;
+        }
+        .step-list li:last-child {
+            border-bottom: none;
+        }
+        .step-list .num {
+            background: #1d2a3f;
+            color: #7b93c0;
+            width: 24px;
+            height: 24px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-list code {
+            background: #0f1624;
+            padding: 0.1rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            color: #b0d0ff;
+            border: 1px solid #28344a;
+            word-break: break-all;
+        }
+
+        .channel-box {
+            background: #1b2538;
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .channel-box .info {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .channel-box .info i {
+            font-size: 1.5rem;
+            color: #25d366;
+        }
+        .channel-box .info span {
+            font-weight: 500;
+        }
+        .channel-box .info small {
+            display: block;
+            font-size: 0.75rem;
+            color: #8a9cc0;
+            font-weight: 400;
+        }
+
+        .btn-wa {
+            background: #25d366;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #0b0f1a;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            transition: 0.15s;
+        }
+        .btn-wa:hover {
+            background: #30e07a;
+            transform: scale(1.02);
+        }
+
+        .status-msg {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #7fc9ff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-note {
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: #5a6f92;
+            text-align: center;
+            border-top: 1px solid #202837;
+            padding-top: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            .card {
+                padding: 1.2rem;
+            }
+            .input-group {
+                flex-direction: column;
+            }
+            .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+            .channel-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-wa {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="badge"><i class="fas fa-bolt" style="margin-right:6px;"></i> PREMIUM</div>
+
+        <h1>Aktivasi Premium</h1>
+        <div class="subhead">
+            Kirim link verifikasi ke email, lalu selesaikan aktivasi dari satu halaman.
+        </div>
+
+        <div class="step-indicator">
+            <span class="active-step">Langkah 1</span>
+            <span>dari 2</span>
+            <span style="margin-left:auto; background:#1d2433; padding:0.1rem 0.9rem; border-radius:30px;">
+                <i class="fas fa-circle" style="color:#2f8bff; font-size:0.5rem;"></i> Kirim email
+            </span>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-envelope" style="color:#2f8bff; margin-right:8px;"></i> Kirim email verifikasi</h2>
+            <p>Masukkan email yang digunakan untuk akun Alight Motion.</p>
+            <div class="input-group">
+                <input type="email" id="emailInput" placeholder="contoh@email.com" />
+                <button class="btn-primary" id="sendEmailBtn"><i class="fas fa-paper-plane"></i> Kirim link</button>
+            </div>
+            <div style="margin-top:0.8rem; font-size:0.8rem; color:#6f86b0;">
+                <i class="fas fa-shield-alt" style="margin-right:6px;"></i> Layanan siap digunakan — API terhubung dan menunggu permintaan.
+            </div>
+            <div style="margin-top:0.3rem; font-size:0.7rem; color:#4a5f82;">
+                <i class="fas fa-key"></i> Token API diproses di server dan tidak ditampilkan di browser.
+            </div>
+        </div>
+
+        <div class="verifikasi-box" id="verifikasiBox" style="display:none;">
+            <label for="linkInput"><i class="fas fa-link"></i> Tempel link verifikasi</label>
+            <div class="row">
+                <input type="text" id="linkInput" placeholder="https://alight-creative..." />
+                <button class="btn-primary" id="verifyBtn" style="padding:0.7rem 1.6rem;"><i class="fas fa-check"></i> Verifikasi</button>
+            </div>
+            <div id="statusVerify" class="status-msg" style="display:none;">
+                <i class="fas fa-spinner fa-pulse"></i> Memproses...
+            </div>
+        </div>
+
+        <div class="panduan">
+            <h3><i class="fas fa-circle-info"></i> Setelah email dikirim</h3>
+            <p style="font-size:0.9rem; color:#b0bedb; margin-bottom:0.5rem;">
+                Setelah link dikirim, ikuti langkah berikut untuk menyelesaikan verifikasi.
+            </p>
+            <ul class="step-list">
+                <li><span class="num">1</span> <span><strong>Cek folder Spam</strong> — Pastikan email verifikasi tidak masuk ke folder spam.</span></li>
+                <li><span class="num">2</span> <span><strong>Tandai sebagai bukan spam</strong> — Buka email dari noreply, lalu tekan "Laporkan bukan spam".</span></li>
+                <li><span class="num">3</span> <span><strong>Buka kembali dari menu Utama</strong> — Masuk ke inbox utama lalu buka kembali email verifikasinya.</span></li>
+                <li><span class="num">4</span> <span><strong>Salin full link</strong> — Tekan lama "Login ke Alight Creative", lalu salin link lengkap yang diawali <code>https://alight-creative...</code></span></li>
+                <li><span class="num">5</span> <span><strong>Tempel link ke kolom verifikasi</strong> — Kembali ke halaman ini dan tempel seluruh link pada kolom yang muncul.</span></li>
+            </ul>
+            <div style="background:#1b2233; padding:0.7rem 1rem; border-radius:12px; margin-top:0.8rem; font-size:0.8rem; color:#f5b86b; border-left:3px solid #f5b86b;">
+                <i class="fas fa-clock"></i> Link verifikasi biasanya hanya aktif beberapa menit. Selesaikan proses segera setelah email diterima.
+            </div>
+        </div>
+
+        <div class="channel-box">
+            <div class="info">
+                <i class="fab fa-whatsapp"></i>
+                <div>
+                    <span>Ikuti saluran ZNN</span>
+                    <small>Dapatkan info update layanan, fitur baru, dan pengumuman penting langsung dari saluran WhatsApp.</small>
+                </div>
+            </div>
+            <button class="btn-wa" id="waBtn"><i class="fab fa-whatsapp"></i> Ikuti saluran</button>
+        </div>
+
+        <div id="globalStatus" class="status-msg" style="margin-top:0.5rem;">
+            <i class="fas fa-circle" style="color:#4ade80; font-size:0.5rem;"></i> Sistem siap
+        </div>
+
+        <div class="footer-note">
+            &copy; 2026 · Aktivasi Premium · <i class="fas fa-lock" style="margin:0 4px;"></i> Koneksi aman
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // =============================================
+            // 1. KONFIGURASI API ZNN
+            // =============================================
+            const API_BASE = 'https://api.znn.my.id';
+            // Endpoint untuk mengirim link verifikasi
+            const SEND_ENDPOINT = '/alightmotion/send';
+            // Endpoint untuk verifikasi link
+            const VERIFY_ENDPOINT = '/alightmotion/verify';
+
+            // =============================================
+            // 2. DOM REFS
+            // =============================================
+            const emailInput = document.getElementById('emailInput');
+            const sendBtn = document.getElementById('sendEmailBtn');
+            const verifikasiBox = document.getElementById('verifikasiBox');
+            const linkInput = document.getElementById('linkInput');
+            const verifyBtn = document.getElementById('verifyBtn');
+            const statusVerify = document.getElementById('statusVerify');
+            const globalStatus = document.getElementById('globalStatus');
+            const waBtn = document.getElementById('waBtn');
+
+            let emailSent = false;
+            let currentEmail = '';
+
+            // =============================================
+            // 3. FUNGSI KIRIM EMAIL (via API ZNN)
+            // =============================================
+            async function sendEmail() {
+                const email = emailInput.value.trim();
+
+                // Validasi
+                if (!email) {
+                    globalStatus.innerHTML =
+                        '<i class="fas fa-exclamation-circle" style="color:#f87171;"></i> Masukkan email terlebih dahulu.';
+                    return;
+                }
+                if (!email.includes('@') || !email.includes('.')) {
+                    globalStatus.innerHTML =
+                        '<i class="fas fa-exclamation-circle" style="color:#f87171;"></i> Email tidak valid.';
+                    return;
+                }
+
+                // Status loading
+                sendBtn.disabled = true;
+                sendBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Mengirim...';
+                globalStatus.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Mengirim email verifikasi...';
+
+                try {
+                    // Panggil API ZNN untuk mengirim link
+                    const url = `${API_BASE}${SEND_ENDPOINT}?email=${encodeURIComponent(email)}`;
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    // Cek response dari API
+                    if (data.status === 'success' || data.message?.includes('terkirim')) {
+                        // Sukses
+                        emailSent = true;
+                        currentEmail = email;
+                        sendBtn.disabled = false;
+                        sendBtn.innerHTML = '<i class="fas fa-check"></i> Terkirim';
+                        globalStatus.innerHTML =
+                            `<i class="fas fa-check-circle" style="color:#4ade80;"></i> Email verifikasi dikirim ke ${email}`;
+
+                        // Munculkan box verifikasi
+                        verifikasiBox.style.display = 'block';
+                        statusVerify.style.display = 'none';
+                        linkInput.value = '';
+                        linkInput.disabled = false;
+                        verifyBtn.style.opacity = '1';
+                        verifyBtn.style.cursor = 'pointer';
+
+                        setTimeout(() => {
+                            sendBtn.innerHTML = '<i class="fas fa-rotate-right"></i> Kirim ulang';
+                        }, 1200);
+
+                        console.log('✅ Email terkirim via API ZNN:', data);
+                    } else {
+                        // Gagal dari API
+                        throw new Error(data.message || 'Gagal mengirim email');
+                    }
+
+                } catch (error) {
+                    // Error
+                    sendBtn.disabled = false;
+                    sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim link';
+                    globalStatus.innerHTML =
+                        `<i class="fas fa-exclamation-circle" style="color:#f87171;"></i> Gagal mengirim: ${error.message}`;
+                    console.error('❌ Error API ZNN:', error);
+                }
+            }
+
+            // =============================================
+            // 4. FUNGSI VERIFIKASI LINK (via API ZNN)
+            // =============================================
+            async function verifyLink() {
+                const link = linkInput.value.trim();
+
+                if (!link) {
+                    statusVerify.style.display = 'flex';
+                    statusVerify.innerHTML =
+                        '<i class="fas fa-exclamation-circle" style="color:#f87171;"></i> Tempel link verifikasi terlebih dahulu.';
+                    return;
+                }
+
+                // Validasi format link
+                if (!link.startsWith('https://alight-creative') && !link.startsWith('https://')) {
+                    statusVerify.style.display = 'flex';
+                    statusVerify.innerHTML =
+                        '<i class="fas fa-exclamation-circle" style="color:#f87171;"></i> Link tidak valid. Pastikan diawali https://alight-creative...';
+                    return;
+                }
+
+                statusVerify.style.display = 'flex';
+                statusVerify.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memverifikasi link...';
+                verifyBtn.disabled = true;
+
+                try {
+                    // Panggil API ZNN untuk verifikasi
+                    const url = `${API_BASE}${VERIFY_ENDPOINT}?link=${encodeURIComponent(link)}&email=${encodeURIComponent(currentEmail)}`;
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    // Cek response
+                    if (data.status === 'success' || data.message?.includes('berhasil') || data.verified) {
+                        // Verifikasi sukses
+                        statusVerify.innerHTML =
+                            '<i class="fas fa-check-circle" style="color:#4ade80;"></i> Verifikasi berhasil! Premium
